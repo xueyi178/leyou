@@ -1,7 +1,10 @@
 package com.leyou.item.service;
 
 import com.leyou.item.common.utils.PageResult;
+import com.leyou.item.common.utils.R;
 import com.leyou.item.item.entity.Brand;
+
+import java.util.List;
 
 /**
  * 品牌的业务逻辑层接口
@@ -18,4 +21,12 @@ public interface IBrandService {
      * @return
      */
   public PageResult<Brand> queryBrandByPage(Integer page, Integer rows, String sortBy, Boolean desc, String search);
+
+    /**
+     * 添加品牌数据
+     * @param brand
+     * @param cids
+     * @return
+     */
+  public R saveBrand(Brand brand, List<Long> cids);
 }

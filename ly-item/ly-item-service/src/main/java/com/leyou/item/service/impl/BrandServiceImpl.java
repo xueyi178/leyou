@@ -3,12 +3,14 @@ package com.leyou.item.service.impl;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.leyou.item.common.utils.PageResult;
+import com.leyou.item.common.utils.R;
 import com.leyou.item.item.entity.Brand;
 import com.leyou.item.mapper.BrandMapper;
 import com.leyou.item.service.IBrandService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 import org.springframework.util.CollectionUtils;
 import tk.mybatis.mapper.entity.Example;
@@ -31,10 +33,11 @@ public class BrandServiceImpl implements IBrandService {
 
     /**
      * 分页查询品牌列表
+     *
      * @param page   当前页
      * @param rows   每页显示的函数
-     * @param sortBy  排序字段
-     * @param desc  降序排序
+     * @param sortBy 排序字段
+     * @param desc   降序排序
      * @param search 查询条件
      * @return
      */
@@ -55,13 +58,37 @@ public class BrandServiceImpl implements IBrandService {
         }
         // 查询
         List<Brand> list = brandMapper.selectByExample(example);
-        if(CollectionUtils.isEmpty(list)){
-            Assert.notEmpty(list,"查询失败,请重试");
+        if (CollectionUtils.isEmpty(list)) {
+            Assert.notEmpty(list, "查询失败,请重试");
         }
 
         PageInfo<Brand> info = new PageInfo<>(list);
 
         // 返回结果
         return new PageResult<>(info.getTotal(), list);
+    }
+
+    /**
+     * 添加品牌数据
+     *
+     * @param brand
+     * @param cids
+     * @return
+     */
+    @Override
+    @Transactional
+    public R saveBrand(Brand brand, List<Long> cids) {
+        int falg = brandMapper.insertSelective(brand);
+        int saveNum = 0;
+        for (Long cid : cids) {
+            int falgs = brandMapper.insertCategoryBrand(cid, brand.getId());
+            if (falgs > 0) {
+                saveNum++;
+            }
+        }
+        if (falg > 0 && cids.size() == saveNum) {
+            return R.ok();
+        }
+        return R.error();
     }
 }

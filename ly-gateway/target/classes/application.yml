@@ -18,7 +18,11 @@ eureka:
 zuul:
   prefix: /api #添加路由前缀
   routes:
-    item-service: /item/**   #隐藏真实微服务名,外界不能直接被访问
+    item-service: /item/**   #隐藏真实微服务名,外界不能直接被访问,品牌的服务名
+    upload-service:       # 这里是路由id，随意写
+      path: /upload/**    # 这里是映射路径
+      serviceId: upload-service   # 指定服务名称
+      strip-prefix: false   #是否在转发时去掉路由前缀
 
 ribbon:
   ConnectTimeout: 1000 # 连接超时时间(ms)

@@ -1,14 +1,14 @@
 package com.leyou.item.controller;
 
 import com.leyou.item.common.utils.PageResult;
+import com.leyou.item.common.utils.R;
 import com.leyou.item.item.entity.Brand;
 import com.leyou.item.service.IBrandService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * @ProjectName leyou
@@ -43,5 +43,14 @@ public class BrandController {
             @RequestParam(value = "search", required = false) String search
             ){
         return ResponseEntity.ok(brandService.queryBrandByPage(page,rows,sortBy,desc,search));
+    }
+
+    /**
+     * 添加品牌
+     * @return
+     */
+    @PostMapping
+    public R saveBrand(Brand brand, @RequestParam("cids") List<Long> cids){
+        return brandService.saveBrand(brand,cids);
     }
 }
