@@ -1,5 +1,7 @@
 package com.leyou.item;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.eureka.server.EnableEurekaServer;
@@ -17,7 +19,10 @@ import org.springframework.cloud.netflix.eureka.server.EnableEurekaServer;
 @SpringBootApplication
 public class LyRegistry {
 
+    private static Logger log = LoggerFactory.getLogger(LyRegistry.class);
+
     public static void main(String[] args) {
+        log.info("EurekaServer注册中心启动成功");
         SpringApplication.run(LyRegistry.class);
     }
 }
