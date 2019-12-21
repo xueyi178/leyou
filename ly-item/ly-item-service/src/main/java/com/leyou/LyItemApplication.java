@@ -25,6 +25,7 @@ public class LyItemApplication {
     public static void main(String[] args) {
         log.info("商品服务提交成功");
         log.info("dev分支少时诵诗书所 ");
+        log.info("dev分支少时诵诗书所少时诵诗书所所所所所所所所所 ");
         SpringApplication.run(LyItemApplication.class);
     }
 }
