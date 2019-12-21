@@ -24,7 +24,7 @@ public class LyItemApplication {
 
     public static void main(String[] args) {
         log.info("商品服务提交成功");
-        log.info("薛毅好刷会反反复复付");
+        log.info("masterfenzh ");
         SpringApplication.run(LyItemApplication.class);
     }
 }
