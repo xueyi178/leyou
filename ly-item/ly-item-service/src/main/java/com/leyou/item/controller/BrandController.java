@@ -53,4 +53,6 @@ public class BrandController {
     public R saveBrand(Brand brand, @RequestParam("cids") List<Long> cids){
         return brandService.saveBrand(brand,cids);
     }
+
+
 }

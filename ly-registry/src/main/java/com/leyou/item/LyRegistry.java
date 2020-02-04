@@ -22,7 +22,7 @@ public class LyRegistry {
     private static Logger log = LoggerFactory.getLogger(LyRegistry.class);
 
     public static void main(String[] args) {
-        log.info("EurekaServer注册中心启动成功");
         SpringApplication.run(LyRegistry.class);
+        log.info("EurekaServer注册中心启动成功");
     }
 }
