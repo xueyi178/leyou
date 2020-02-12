@@ -15,7 +15,19 @@ public class Brand {
     @Id
     @KeySql(useGeneratedKeys = true)
     private Long id;
-    private String name;// 品牌名称
-    private String image;// 品牌图片
-    private Character letter; //字母排序
+
+    /**
+     * 品牌名称
+     */
+    private String name;
+
+    /**
+     * 品牌图片
+     */
+    private String image;
+
+    /**
+     * 字母排序
+     */
+    private Character letter;
 }
