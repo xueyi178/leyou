@@ -20,10 +20,15 @@ import java.io.Serializable;
 public class Category implements Serializable {
     @Id
     @KeySql(useGeneratedKeys = true)
-    //主键id
+
+    /**
+     * 主键id
+     */
     private Long id;
 
-    //类目名称
+    /**
+     * 类目名称
+     */
     private String name;
 
     //父类目id,顶级类目填0
